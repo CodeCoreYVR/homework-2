@@ -1,3 +1,5 @@
+#! /usr/bin/env node
+
 function drawLine(num){
    return '\u2500'.repeat(num);
 }
