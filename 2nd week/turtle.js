@@ -67,7 +67,7 @@ class Turtle {
     }
     forward (step_para) {
         let step=Number(step_para);
-        console.log('\nPosition:'+this.x+","+this.y+ " Direction:"+this.direction+" Step:"+step);
+        //console.log('\nPosition:'+this.x+","+this.y+ " Direction:"+this.direction+" Step:"+step);
         for (let i = 0; i < step; i++) {
             if (this.direction === 'x+') {
                 this.x++;                
@@ -98,7 +98,7 @@ class Turtle {
         return this;
     }
     right () {      
-        console.log('Position:'+this.x+","+this.y+ " Direction:"+this.direction);
+        //console.log('Position:'+this.x+","+this.y+ " Direction:"+this.direction);
         if (this.direction === 'x+') {
             this.direction='y+';
         } else if (this.direction === 'y+') {
@@ -108,11 +108,11 @@ class Turtle {
         } else if (this.direction === 'y-') {
             this.direction='x+';
         }   
-        console.log('turn right:'+this.x+","+this.y+ " Direction:"+this.direction);             
+       // console.log('turn right:'+this.x+","+this.y+ " Direction:"+this.direction);             
         return this;
     };
     left () {   
-        console.log('Position:'+this.x+","+this.y+ " Direction:"+this.direction);   
+       // console.log('Position:'+this.x+","+this.y+ " Direction:"+this.direction);   
         if (this.direction === 'x+') {
             this.direction='y-';
         } else if (this.direction === 'y-') {
@@ -122,7 +122,7 @@ class Turtle {
         } else if (this.direction === 'y+') {
             this.direction='x+';
         }        
-        console.log('turn left:'+this.x+","+this.y+ " Direction:"+this.direction); 
+       // console.log('turn left:'+this.x+","+this.y+ " Direction:"+this.direction); 
         return this;
     };
     allPoints(){
@@ -177,7 +177,7 @@ if(!process.argv[2]){
             const pos_array = arg.substr(1).split(",");             
             run_string += " flash = new Turtle("+pos_array[0]+","+pos_array[1]+")";                        
         } else if (arg.substr(0,1)  === 'f') {
-            run_string +=".forward("+arg.substr(1)+").print()";
+            run_string +=".forward("+arg.substr(1)+")";
         } else if (arg.substr(0,1)  === 'r') {
             run_string +=".right()";
         } else if (arg.substr(0,1)  === 'l') {
@@ -186,6 +186,7 @@ if(!process.argv[2]){
 
    }
    
+   run_string +=".print()";
    //console.log(run_string);
    eval(run_string);
 }
