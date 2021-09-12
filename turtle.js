@@ -1,3 +1,13 @@
+///////////////////////////////////////////////////////////////////////////////////
+//
+//  [Homework] Turtle Graphics - 2
+//  Drawing Turtle Graphics Style
+//  In this homework, you will create a simple drawing program 
+//  inspired by Turtle Graphics. It will be a much simpler implementation 
+//  that will only accept right angles (90 degrees).
+//
+///////////////////////////////////////////////////////////////////////////////////
+
 class Turtle {
     constructor (x, y) {
         this.x = Number(x) || 0;
@@ -140,17 +150,77 @@ class Turtle {
 };
 
 /*
+//////////////////////////////////////////////////////////////////////////////////
+//
+//  Breaking It Down
+//  Before beginning, you should read all instructions.
+//
+//  The Turtle
+//  To begin drawing, your program needs to know where it should begin.
+//  Create a Turtle class whose constructor will take two arguments 
+//  (in order): x & y coordinates. Here are some examples:
+//  This turtle begins at position (0, 0) on our fictional 5 by 5 grid. 
+//
+///////////////////////////////////////////////////////////////////////////////////
+
 new Turtle(0, 0).print();
 new Turtle(2, 3).print();
 new Turtle(5, 5).print();
+
+
+///////////////////////////////////////////////////////////////////////////////////
+//
+//  Moving The Turtle
+//  Create a forward method that takes a number of steps then updates the Turtle  
+//  instance with its new position after moving that many steps. Keep track of
+//  every movement the turtle makes including the first one. 
+//
+///////////////////////////////////////////////////////////////////////////////////
+
 new Turtle(0, 0).forward(3).print();
+
+
+///////////////////////////////////////////////////////////////////////////////////
+//
+//  Turning The Turtle
+//  Create a right method that takes zero arguments. When right is called, 
+//  update the Turtle instance to rotate its facing to the right. A turtle should 
+//  begin facing east.
+//
+///////////////////////////////////////////////////////////////////////////////////
+
 new Turtle(0, 0).forward(3).right().forward(2).print();
+
+
+///////////////////////////////////////////////////////////////////////////////////
+//
+//  Create a left method like right but turns the turtle's facing to the left.
+//
+///////////////////////////////////////////////////////////////////////////////////
+
 new Turtle(0, 4).forward(3).left().forward(3).print();
 
-console.log(new Turtle(0, 4).forward(3).left().forward(3).allPoints());
 
+///////////////////////////////////////////////////////////////////////////////////
+//
+//  Create an allPoints method which returns an array containing all coordinates 
+//  the turtle has walked over.
+//
+///////////////////////////////////////////////////////////////////////////////////
+
+console.log(new Turtle(0, 4).forward(3).left().forward(3).allPoints());
 const flash = new Turtle(0, 4).forward(3).left().forward(3);
 console.log(flash.allPoints());
+
+
+///////////////////////////////////////////////////////////////////////////////////
+//
+//  Print
+//  Create a print method that draws the path that the turtle walked over as a string
+//  and logs it to the console. You should use the array of coordinates returned by 
+//  .allPoints() as your starting point. 
+//
+///////////////////////////////////////////////////////////////////////////////////
 
 new Turtle(0, 4)
 .forward(3)
@@ -167,7 +237,38 @@ new Turtle(0, 4)
 .left()
 .forward(3)
 .print();
+
+///////////////////////////////////////////////////////////////////////////////////
+//
+//  Stretch
+//  Make the turtle graphics program usable as a script. 
+//  It should take a string as a an argument that is seperated by dashes 
+//  (i.e. ->). This string will contain all turtle commands in abbreviated form:
+//  tX,Y for new Turtle where X & Y are numbers representing the starting x & y
+//  coordinates. If this command is not given, begin the turtle at (0, 0).
+//  fN for forward where N is a number representing how many units the turtle moves forward.
+//   r for right
+//  l for left
+//
+///////////////////////////////////////////////////////////////////////////////////
+
+$ node turtle.js t5,5-f10-r-f5-r-f10-r-f5-r-f2-r-f5-l-f2-l-f5
  
+$ node turtle.js f10-r-r-f10-l-f5-l-f10-r-f5-r-f11
+
+$ node turtle.js t5,5-f10-r-f5-r-f10-r-f5-r-f2-r-f5-l-f2-l-f5
+
+///////////////////////////////////////////////////////////////////////////////////
+//
+//  Save To a File  Have your script accept an  --output=[filename<]/code>
+//  where [filename] corresponds to the name of a file. 
+//  If the option is used, write the turtle drawing to the file using 
+//  fs.writeFile. Notify the user of that the write was completed.
+//
+///////////////////////////////////////////////////////////////////////////////////
+
+$ node turtle.js --output=drawing.txt f10-r-f10-r-f10-r-f10
+
 */
 
 
@@ -214,3 +315,8 @@ if(!process.argv[2]){
    }
 
 }
+///////////////////////////////////////////////////////////////////////////////////
+//
+//  the End 
+//
+///////////////////////////////////////////////////////////////////////////////////
