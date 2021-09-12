@@ -26,7 +26,7 @@ class Turtle {
         this.steps_array = [];
         this.steps_array.push([this.x, this.y]);
     }; 
-    print(){
+    print(file_name=''){ 
         const turtleFootprint = (x, y) => {
             for (let step of this.steps_array) {
                 if (step[0] === x && step[1] === y)
@@ -34,9 +34,9 @@ class Turtle {
             }
             return false;
         };
-
+        let return_string='';
         
-        console.log('-- BEGIN LOG');
+        return_string += '-- BEGIN LOG\n';
         for (let j = this.minY; j <= this.maxY; j++){
             let row = '';
             for (let i = this.minX; i <= this.maxX; i++){  
@@ -60,9 +60,18 @@ class Turtle {
                 }
             
             }
-            console.log(row);
+            return_string += row+'\n';
         } 
-        console.log('-- END LOG');
+        return_string += '-- END LOG\n';
+        if(file_name ===''){
+            console.log(return_string);
+        }else{             
+            
+            fs.writeFile(file_name,return_string , function (err) {
+            if (err) return console.log(err);
+                 console.log("🐢 Drawing written to "+file_name);
+            });
+        }
         return this;
     }
     forward (step_para) {
@@ -165,14 +174,22 @@ new Turtle(0, 4)
 if(!process.argv[2]){
     new Turtle(0, 0).print();
 }else{    
+    let file_name='';
+    if(process.argv[2].substr(0,9)==="--output="){
+        file_name=process.argv[2].substr(9);       
+        if(process.argv[3]){
+            process.argv[2]=process.argv[3];
+        }
+    }else if(process.argv[3] && process.argv[3].substr(0,9)==="--output="){
+        file_name=process.argv[3].substr(9);
+    }
+
     let run_string='';
     if(process.argv[2].indexOf('t')){
         run_string='flash = new Turtle()';        
     } 
-    const arg_array = process.argv[2].split("-");
-    //const flash = new Turtle();
-    for (let arg of arg_array) {
-        //console.log(arg.substr(0,1)); 
+    const arg_array = process.argv[2].split("-");  
+    for (let arg of arg_array) {   
         if (arg.substr(0,1)  === 't') {             
             const pos_array = arg.substr(1).split(",");             
             run_string += " flash = new Turtle("+pos_array[0]+","+pos_array[1]+")";                        
@@ -185,8 +202,15 @@ if(!process.argv[2]){
         }        
 
    }
+   fs = require('fs');
    
-   run_string +=".print()";
    //console.log(run_string);
-   eval(run_string);
+   if(file_name===''){
+        run_string +=".print(); ";
+        eval(run_string);
+   }else{
+        run_string +=".print('"+file_name+"'); ";  
+        eval(run_string);       
+   }
+
 }
